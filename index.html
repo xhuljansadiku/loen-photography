@@ -1,0 +1,913 @@
+ 
+
+ <!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loen Photography</title>
+  <meta name="description" content="Fotografe për evente, portrete, newborn, fejesa dhe martesa. Rezervo tani seancën tënde fotografike." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+<style>
+  :root{
+    /* Paletë elegante, artistike dhe femërore (lavender + blush) */
+    --lavender-50:  #f9f7fc;
+    --lavender-100: #f1ecfa;
+    --lavender-200: #e6dbfa;
+    --lavender-300: #d2bff4;
+    --lavender-400: #b89eee;
+    --lavender-500: #9a6dd6; /* accent */
+    --lavender-600: #8053b9; /* hover/dark */
+
+    --blush-50:   #fff6f8;
+    --blush-100:  #fde8eb;
+    --blush-200:  #f9d3da;
+    --blush-300:  #f5bdc7;
+    --blush-400:  #f09fb0;
+    --blush-500:  #e87e94;
+
+    /* Neutral & surfaces */
+    --ink-900:#1a1a1f;    /* tekst i errët */
+    --ink-700:#2b2b31;    /* tituj/hover të errët */
+    --ink-600:#4a4752;    /* tekst sekondar */
+    --bg:#fbfaff;         /* sfond shumë i butë, i ftohtë */
+    --card:#ffffff;
+    --ring:#e6dbfa;       /* fokus/border i butë lavandë */
+
+    /* States */
+    --success:#38b593;
+    --warning:#f6a600;
+
+    /* Shadow helpers */
+    --shadow-soft: 0 8px 20px rgba(154, 109, 214, .12);   /* nga lavender-500 */
+    --shadow-strong:0 16px 38px rgba(26,26,31,.12);
+  }
+
+  /* Opsionale: Dark mode i thjeshtë me klasën .dark në <html> */
+  html.dark {
+    --bg:#121217;
+    --card:#17171d;
+    --ink-900:#ffffff;
+    --ink-700:#e8e8ef;
+    --ink-600:#bdbdcc;
+    --ring:#2a2340;
+    --shadow-soft: 0 8px 20px rgba(0,0,0,.35);
+    --shadow-strong:0 20px 48px rgba(0,0,0,.45);
+  }
+
+  /* Bazë */
+  html, body { scroll-behavior:smooth; }
+  body{
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    color: var(--ink-900);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Navbar */
+  .navbar{
+    backdrop-filter: saturate(150%) blur(8px);
+    background-color: rgba(241, 236, 250, 0.85) !important; /* lavender-100 me transparencë */
+    box-shadow: 0 4px 20px rgba(154, 109, 214, .12);
+    border-bottom: 1px solid var(--ring);
+  }
+  .navbar .nav-link{
+    font-weight: 600;
+    color: var(--ink-900);
+    transition: color .2s ease;
+  }
+  .navbar .nav-link.active,
+  .navbar .nav-link:hover{
+    color: var(--lavender-600);
+  }
+  .brand-badge{
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    letter-spacing:.5px;
+    color: var(--lavender-600);
+  }
+
+  /* Hero */
+  .hero{
+    min-height: 85vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    color: var(--ink-900);
+    background:
+      radial-gradient(1200px 500px at 15% 20%, rgba(182,158,238,.25), transparent 60%),
+      radial-gradient(900px 420px at 80% 70%, rgba(249,211,218,.25), transparent 60%),
+      linear-gradient(to bottom, rgba(241,236,250,.85), rgba(241,236,250,.35)),
+      url("https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=1920&auto=format&fit=crop") center/cover no-repeat;
+  }
+  .hero .badge-soft{
+    background: var(--lavender-100);
+    border: 1px solid var(--lavender-200);
+    color: var(--lavender-600);
+    font-weight: 600;
+    border-radius: 999px;
+    padding:.45rem .8rem;
+  }
+
+  /* Butona */
+  .btn-primary{
+    --bs-btn-bg: var(--lavender-500);
+    --bs-btn-border-color: var(--lavender-500);
+    --bs-btn-hover-bg: var(--lavender-600);
+    --bs-btn-hover-border-color: var(--lavender-600);
+    --bs-btn-active-bg: var(--lavender-600);
+    --bs-btn-active-border-color: var(--lavender-600);
+    --bs-btn-color:#fff;
+    box-shadow: var(--shadow-soft);
+    transition: transform .15s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 10px 26px rgba(154,109,214,.2); }
+
+  .btn-outline-dark{
+    border-color: var(--ink-900);
+    color: var(--ink-900);
+    transition: background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .btn-outline-dark:hover{
+    background: var(--ink-900);
+    color:#fff;
+    transform: translateY(-1px);
+  }
+
+  /* Seksione */
+  section{ padding: 80px 0; }
+  .section-title{
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--ink-900);
+    letter-spacing: 0.2px;
+  }
+  .section-subtitle{
+    color: var(--ink-600);
+    max-width: 720px;
+  }
+
+  /* About */
+  .about-img{
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(154,109,214,.18);
+    border: 6px solid #fff;
+  }
+  .check{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.4rem .7rem;
+    border-radius:999px;
+    background: var(--lavender-50);
+    border: 1px solid var(--ring);
+    font-weight:600;
+    color: var(--lavender-600);
+  }
+
+  /* Services */
+  .service-card{
+    background: var(--card);
+    border: 1px solid var(--ring);
+    border-radius: 18px;
+    height: 100%;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    box-shadow: var(--shadow-soft);
+  }
+  .service-card:hover{
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--lavender-300);
+  }
+  .service-emoji{
+    font-size: 28px;
+    width: 3rem; height: 3rem;
+    display:grid; place-items:center;
+    border-radius: 12px;
+    background: var(--lavender-100);
+    border: 1px solid var(--lavender-200);
+  }
+
+  /* Portfolio */
+  .filter-btn{
+    border:1px solid var(--lavender-300);
+    color: var(--lavender-600);
+    background: var(--lavender-50);
+    border-radius: 999px;
+    padding:.45rem .9rem;
+    font-weight:600;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .filter-btn.active{
+    background: var(--lavender-500);
+    border-color: var(--lavender-500);
+    color:white;
+  }
+  .portfolio-card{
+    position: relative;
+    overflow:hidden;
+    border-radius:16px;
+    border:1px solid var(--ring);
+    background:#fff;
+    box-shadow: 0 10px 24px rgba(26,26,31,.06);
+  }
+  .portfolio-card img{
+    width:100%; height: 260px; object-fit: cover;
+    transition: transform .4s ease;
+    display:block;
+  }
+  .portfolio-card:hover img{ transform: scale(1.05); }
+  .portfolio-badge{
+    position:absolute; left:12px; top:12px;
+    background: rgba(154,109,214,.92);
+    color:#fff; font-weight:600; padding:.25rem .6rem; border-radius: 999px;
+    font-size:.8rem;
+    box-shadow: 0 6px 14px rgba(154,109,214,.35);
+  }
+
+  /* CTA */
+  .cta{
+    background:
+      radial-gradient(1200px 400px at 20% 20%, rgba(184,158,238,.25), transparent 60%),
+      radial-gradient(900px 300px at 80% 60%, rgba(245,189,199,.18), transparent 60%),
+      var(--lavender-100);
+    border:1px solid var(--ring);
+    border-radius: 20px;
+    box-shadow: var(--shadow-strong);
+  }
+
+  /* Testimonials */
+  .testimonial{
+    background: var(--card);
+    border:1px solid var(--ring);
+    border-radius:18px;
+    box-shadow: 0 10px 24px rgba(26,26,31,.06);
+  }
+
+  /* Forms */
+  .form-control, .form-select{
+    border-radius: 12px;
+    border-color: var(--lavender-300);
+  }
+  .form-control:focus, .form-select:focus{
+    box-shadow: 0 0 0 0.25rem rgba(154, 109, 214,.25);
+    border-color: var(--lavender-500);
+  }
+
+  /* Footer */
+  footer{
+    background: linear-gradient(180deg, var(--lavender-100), var(--lavender-50));
+    border-top: 1px solid var(--ring);
+  }
+
+  /* Ndihmë për anchor offset */
+  :target { scroll-margin-top: 90px; }
+
+  /* Aksesueshmëri dhe animacione */
+  *:focus-visible{
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(154,109,214,.35);
+    border-radius: 8px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body style="overflow-x:hidden;">
+
+
+  <!-- NAVBAR (me CTA) -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand-badge" href="#home">Loen Photography</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Shfaq menunë">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reservation">Reservation</a></li>
+          <li class="nav-item me-lg-3"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item d-none d-lg-block">
+            <a class="btn btn-primary btn-sm" href="#reservation">Rezervo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO – Split layout me “polaroid” foto -->
+  <header id="home" class="hero">
+    <div class="container py-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <span class="badge badge-soft rounded-pill mb-3">Fotografi & Video për momentet e zemrës</span>
+          <h1 class="display-5 fw-bold" style="font-family:'Playfair Display', serif;">Kapim së bashku magjinë e momenteve tuaja ✨</h1>
+          <p class="lead mt-3 mb-4">Nga ditëlindje e deri te martesa, nga newborn te portretet krijojmë kujtime që zgjasin gjithë jetën.</p>
+          <div class="d-flex gap-3">
+            <a href="#reservation" class="btn btn-primary btn-lg">Rezervo tani</a>
+            <a href="#portfolio" class="btn btn-outline-dark btn-lg">Shiko portofolin</a>
+          </div>
+
+          <!-- Stats të vegjël për besueshmëri -->
+          <div class="d-flex gap-4 mt-4">
+            <div>
+              <div class="h4 mb-0 fw-bold">250+</div>
+              <small class="text-muted">evente të dokumentuara</small>
+            </div>
+            <div>
+              <div class="h4 mb-0 fw-bold">7+ vjet</div>
+              <small class="text-muted">eksperiencë</small>
+            </div>
+            <div>
+              <div class="h4 mb-0 fw-bold">4.9/5</div>
+              <small class="text-muted">mes. vlerësime</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <!-- Stack imazhesh si polaroid (pa CSS të ri: përdor klasat ekzistuese) -->
+          <div class="position-relative mx-auto" style="max-width:520px;">
+            <img class="about-img img-fluid position-relative" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Moment i lumtur në event" />
+            <img class="about-img img-fluid position-absolute d-none d-md-block"
+                 src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop"
+                 alt="Çift në dasmë"
+                 style="width:48%; right:-6%; bottom:-8%; transform: rotate(6deg);" />
+            <img class="about-img img-fluid position-absolute d-none d-md-block"
+                 src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
+                 alt="Newborn i ëmbël"
+                 style="width:38%; left:-6%; top:-8%; transform: rotate(-6deg);" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Trusted strip -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <small class="text-muted d-block mb-2">E zgjedhur nga familje dhe çifte në Tiranë & Prishtinë</small>
+          <div class="d-flex justify-content-center gap-4 flex-wrap opacity-75">
+            <span>✨ HappyCouples</span>
+            <span>🎈 PartyMoods</span>
+            <span>💍 BrideStories</span>
+            <span>👶 LittleSteps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT – Story + highlights -->
+  <section id="about">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <h2 class="section-title mb-3">Loen Photography</h2>
+          <p class="section-subtitle">Unë jam Daniela, fotografe që dashuron dritën natyrale, ngjyrat e buta dhe historitë e sinqerta. Prej <strong>7+ vitesh</strong> dokumentoj momente të paharrueshme për familje dhe çifte.</p>
+
+          <ul class="list-unstyled mt-3">
+            <li class="mb-2"><span class="check">📷 Portrete natyrale</span></li>
+            <li class="mb-2"><span class="check">👶 Newborn me kujdes</span></li>
+            <li class="mb-2"><span class="check">💍 Fejesa & Martesa</span></li>
+            <li class="mb-2"><span class="check">🎈 Evente gëzimi</span></li>
+          </ul>
+
+          <p class="mt-2">Qasja ime: ju buzëqeshni, unë kujdesem për planin, dritën dhe rehatinë. Le të krijojmë diçka të bukur bashkë.</p>
+          <div class="d-flex gap-2 mt-3">
+            <a href="#contact" class="btn btn-primary">Rezervo tani</a>
+            <a href="#portfolio" class="btn btn-outline-dark">Shiko punët</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <img class="about-img img-fluid" src="./assets/img/test.jpg" alt="Fotografe femër me kamerë, stil editorial" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES – Pricing i qartë me lista përfitimesh -->
+  <section id="packages">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Packages</h2>
+        <p class="section-subtitle mx-auto">Zgjidh paketën që i përshtatet vizionit tënd. Mund të personalizohen sipas kërkesës.</p>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- Mini -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0" style="border-radius:18px; box-shadow: var(--shadow-soft);">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-bold">Mini Session</h5>
+              <p class="text-muted">Për portrete të shpejta ose çifte.</p>
+              <ul class="text-muted mb-4">
+                <li>45 minuta</li>
+                <li>1 vendndodhje</li>
+                <li>20 foto të edituara</li>
+                <li>Galeria online</li>
+              </ul>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fs-5 fw-bold">€99</span>
+                <a href="#reservation" class="btn btn-primary btn-sm">Rezervo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Standard (highlight) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 position-relative" style="border-radius:18px; box-shadow: var(--shadow-strong); border:1px solid var(--ring);">
+            <div class="position-absolute top-0 start-50 translate-middle badge text-bg-light"
+                 style="border:1px solid var(--ring); border-radius:999px; padding:.35rem .7rem;">
+              Më e kërkuara
+            </div>
+            <div class="card-body p-4 pt-5">
+              <h5 class="card-title fw-bold">Event Standard</h5>
+              <p class="text-muted">Për ditëlindje, fejesa dhe evente familjare.</p>
+              <ul class="text-muted mb-4">
+                <li>3 orë mbulim</li>
+                <li>Foto + video highlight 60s</li>
+                <li>80 foto të edituara</li>
+                <li>Dorëzim i shpejtë</li>
+              </ul>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fs-5 fw-bold">€349</span>
+                <a href="#reservation" class="btn btn-primary btn-sm">Rezervo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wedding -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0" style="border-radius:18px; box-shadow: var(--shadow-soft);">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-bold">Wedding Full Day</h5>
+              <p class="text-muted">Story i plotë i ditës suaj të madhe.</p>
+              <ul class="text-muted mb-4">
+                <li>8–10 orë</li>
+                <li>2 kamera</li>
+                <li>Video teaser 90s + album 20x30</li>
+                <li>250+ foto të edituara</li>
+              </ul>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fs-5 fw-bold">€1,290</span>
+                <a href="#reservation" class="btn btn-primary btn-sm">Rezervo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (siç është, ruajtur) -->
+  <section id="services">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Shërbimet</h2>
+        <p class="section-subtitle mx-auto">Foto dhe video për çdo moment. Zgjidh çfarë të duhet unë merrem me detajet.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- items si në versionin tënd -->
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="service-emoji">👶</span>
+              <h5 class="mb-0 fw-bold">Newborn & Family</h5>
+            </div>
+            <p class="mb-0 text-muted">Seanca delikate në shtëpinë tuaj ose studio, me rekvizita të sigurta dhe ton pastel.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="service-emoji">🎈</span>
+              <h5 class="mb-0 fw-bold">Birthday & Events</h5>
+            </div>
+            <p class="mb-0 text-muted">Mbulim kreativ i ditëlindjeve, baby shower, gender reveal dhe festa familjare.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="service-emoji">💍</span>
+              <h5 class="mb-0 fw-bold">Engagement & Wedding</h5>
+            </div>
+            <p class="mb-0 text-muted">Pre-wedding, ceremonia dhe festa – storytelling i plotë me foto & video.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="service-emoji">🎥</span>
+              <h5 class="mb-0 fw-bold">Video Highlights</h5>
+            </div>
+            <p class="mb-0 text-muted">Klip 30–90s për rrjete sociale, ngjyrosje kinematike dhe muzikë me licencë.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="service-emoji">🏞️</span>
+              <h5 class="mb-0 fw-bold">Outdoor Portraits</h5>
+            </div>
+            <p class="mb-0 text-muted">Golden hour portraits me lokacione të përzgjedhura dhe udhëzim pozash.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="service-emoji">🏢</span>
+              <h5 class="mb-0 fw-bold">Biznes & Branding</h5>
+            </div>
+            <p class="mb-0 text-muted">Headshots profesionale, foto ambienti dhe storytelling për markën tuaj.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO (si tek versioni yt – i ruajtur) -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Portofolio</h2>
+        <p class="section-subtitle mx-auto">Filtro sipas kategorisë: të gjitha, evente, ditëlindje, newborn, fejesa, martesa.</p>
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+        <button class="btn filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="btn filter-btn" data-filter="events">Events</button>
+        <button class="btn filter-btn" data-filter="birthday">Birthday</button>
+        <button class="btn filter-btn" data-filter="newbornbaby">Newborn</button>
+        <button class="btn filter-btn" data-filter="engaged">Engaged</button>
+        <button class="btn filter-btn" data-filter="married">Married</button>
+      </div>
+
+      <div class="row g-4" id="portfolioGrid">
+        <!-- shembujt e tu ekzistues -->
+        <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="events">
+          <div class="portfolio-card">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop" alt="Event festë me drita" />
+            <span class="portfolio-badge">Events</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="birthday">
+          <div class="portfolio-card">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Ditëlindje me tullumbace" />
+            <span class="portfolio-badge">Birthday</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="newbornbaby">
+          <div class="portfolio-card">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="Newborn baby në batanije" />
+            <span class="portfolio-badge">Newborn</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="engaged">
+          <div class="portfolio-card">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Fejesë romantike" />
+            <span class="portfolio-badge">Engaged</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="married">
+          <div class="portfolio-card">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop" alt="Çift në dasmë" />
+            <span class="portfolio-badge">Married</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="events">
+          <div class="portfolio-card">
+            <img src="https://images.unsplash.com/photo-1521337588300-4c6ecf0b4c57?q=80&w=1200&auto=format&fit=crop" alt="Event me muzikë live" />
+            <span class="portfolio-badge">Events</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA (siç është) -->
+  <section id="cta" class="py-0">
+    <div class="container">
+      <div class="cta p-5 p-lg-5 text-center">
+        <h3 class="mb-3" style="font-family:'Playfair Display', serif;">A jeni gati të kapni momentet më të bukura?</h3>
+        <p class="mb-4">Rezervoni seancën tuaj fotografike sot dhe krijoni kujtime që do të zgjasin një jetë.</p>
+        <a href="#reservation" class="btn btn-primary btn-lg">Rezervo tani</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS – Karta statike (ndryshim nga carousel) -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Testimonials</h2>
+        <p class="section-subtitle mx-auto">Disa fjalë nga klientët e lumtur.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="testimonial p-4 h-100">
+            <p class="mb-4">“Fotot e ditëlindjes së vajzës dolën magjike. E duruar, krijuese dhe shumë profesionale.”</p>
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://i.pravatar.cc/80?img=15" class="rounded-circle" width="56" height="56" alt="Kliente e lumtur" />
+              <div>
+                <div class="fw-bold">Arlinda K.</div>
+                <div class="text-muted">Birthday Event</div>
+              </div>
+              <div class="ms-auto text-warning">★★★★★</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="testimonial p-4 h-100">
+            <p class="mb-4">“Na udhëhoqi në çdo hap të dasmës. Nuk e di si i kapi të gjitha ato emocione!”</p>
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://i.pravatar.cc/80?img=5" class="rounded-circle" width="56" height="56" alt="Klient i lumtur" />
+              <div>
+                <div class="fw-bold">Granit &amp; Erisa</div>
+                <div class="text-muted">Wedding</div>
+              </div>
+              <div class="ms-auto text-warning">★★★★★</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="testimonial p-4 h-100">
+            <p class="mb-4">“Seanca newborn ishte super e qetë dhe e sigurt. Fotot – një ëndërr.”</p>
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://i.pravatar.cc/80?img=32" class="rounded-circle" width="56" height="56" alt="Kliente e lumtur" />
+              <div>
+                <div class="fw-bold">Viola D.</div>
+                <div class="text-muted">Newborn</div>
+              </div>
+              <div class="ms-auto text-warning">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESERVATION (siç është) -->
+  <section id="reservation">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Rezervim</h2>
+        <p class="section-subtitle mx-auto">Zgjidh datën dhe paketën unë do të kthehem me konfirmimin sa më shpejt.</p>
+      </div>
+
+      <form class="row g-4 justify-content-center" onsubmit="handleReservation(event)">
+        <div class="col-md-6">
+          <label class="form-label">Emri & Mbiemri</label>
+          <input type="text" class="form-control" id="resName" placeholder="p.sh. Arlinda Krasniqi" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="resEmail" placeholder="ti@shembull.com" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Telefon</label>
+          <input type="tel" class="form-control" id="resPhone" placeholder="+355 ..." required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Data</label>
+          <input type="date" class="form-control" id="resDate" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Ora</label>
+          <input type="time" class="form-control" id="resTime" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Paketa</label>
+          <select class="form-select" id="resPackage" required>
+            <option value="" selected disabled>Zgjidh paketën</option>
+            <option>Mini Session</option>
+            <option>Event Standard</option>
+            <option>Wedding Full Day</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Kategori</label>
+          <select class="form-select" id="resCategory" required>
+            <option value="" selected disabled>Zgjidh kategorinë</option>
+            <option value="events">Events</option>
+            <option value="birthday">Birthday</option>
+            <option value="newbornbaby">Newborn</option>
+            <option value="engaged">Engaged</option>
+            <option value="married">Married</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Mesazhi</label>
+          <textarea id="resMsg" class="form-control" rows="4" placeholder="Shkruaj detaje shtesë (lokacioni, numri i personave, stili i dëshiruar...)"></textarea>
+        </div>
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-primary btn-lg">Dërgo kërkesën</button>
+          <div id="resAlert" class="mt-3" role="alert" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ – shtuar për diferencim -->
+  <section id="faq">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Pyetje të Shpeshta</h2>
+        <p class="section-subtitle mx-auto">Informacione praktike përpara se të rezervoni.</p>
+      </div>
+
+      <div class="accordion" id="faqAcc">
+        <div class="accordion-item" style="border:1px solid var(--ring); border-radius:12px; overflow:hidden;">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fq1" aria-expanded="true">
+              Si dorëzohen fotot?
+            </button>
+          </h2>
+          <div id="fq1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc">
+            <div class="accordion-body">Përmes galerie online të sigurt me mundësi shkarkimi dhe ndarje.</div>
+          </div>
+        </div>
+
+        <div class="accordion-item mt-3" style="border:1px solid var(--ring); border-radius:12px; overflow:hidden;">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq2">
+              A mund të personalizohet paketa?
+            </button>
+          </h2>
+          <div id="fq2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body">Po, çdo paketë mund të përshtatet për kohëzgjatje, vendndodhje dhe opsione extra.</div>
+          </div>
+        </div>
+
+        <div class="accordion-item mt-3" style="border:1px solid var(--ring); border-radius:12px; overflow:hidden;">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq3">
+              Sa herët duhet të rezervoj?
+            </button>
+          </h2>
+          <div id="fq3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body">Ideal është 2–4 javë më herët për seanca dhe 2–3 muaj për dasma/evente.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (siç është) -->
+  <section id="contact">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Kontakti</h2>
+        <p class="section-subtitle mx-auto">Ke pyetje? <br> Shkruaj një mesazh ose lidhu në rrjete sociale.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <form class="row g-3" onsubmit="handleContact(event)">
+            <div class="col-md-6">
+              <label class="form-label">Emri</label>
+              <input type="text" class="form-control" id="ctName" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="ctEmail" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Subjekti</label>
+              <input type="text" class="form-control" id="ctSubject" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Mesazhi</label>
+              <textarea class="form-control" id="ctMsg" rows="5" required></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary">Dërgo</button>
+              <div id="ctAlert" class="mt-3" role="alert" aria-live="polite"></div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="p-4 h-100" style="background:#fff;border:1px solid var(--ring); border-radius:18px;">
+            <h5 class="fw-bold mb-3">Info kontakti</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">📍 Tiranë / Prishtinë (në dispozicion për udhëtime)</li>
+              <li class="mb-2">📧 <a href="mailto:hello@loen-photography.com" class="link-dark">hello@loen-photography.com</a></li>
+              <li class="mb-2">📞 <a href="tel:+355670000000" class="link-dark">+355 67 000 0000</a></li>
+              <li class="mb-2">🕒 Hapur: Hën–Sht, 09:00–18:00</li>
+            </ul>
+            <div class="d-flex gap-2">
+              <a class="btn btn-outline-dark btn-sm" href="#" aria-label="Instagram">Instagram</a>
+              <a class="btn btn-outline-dark btn-sm" href="#" aria-label="Facebook">Facebook</a>
+              <a class="btn btn-outline-dark btn-sm" href="#" aria-label="TikTok">TikTok</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center gap-2">
+      <div>© <span id="year"></span> Loen Photography. <br> Të gjitha të drejtat e rezervuara.</div>
+      <div class="small text-muted">Krijuar me dashuri dhe dritë natyrale ✨</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS + helpers -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Viti në footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // NAV active link on scroll
+    const sections = document.querySelectorAll("section, header.hero");
+    const navLinks = document.querySelectorAll(".navbar .nav-link");
+    const setActive = () => {
+      let fromTop = window.scrollY + 110;
+      sections.forEach(sec => {
+        if (sec.offsetTop <= fromTop && (sec.offsetTop + sec.offsetHeight) > fromTop){
+          const id = sec.getAttribute('id') || 'home';
+          navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+        }
+      });
+    };
+    window.addEventListener('scroll', setActive); setActive();
+
+    // PORTFOLIO FILTER
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.portfolio-item');
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        items.forEach(it=>{
+          const match = filter === 'all' || it.dataset.category === filter;
+          it.classList.toggle('d-none', !match);
+        });
+      });
+    });
+
+    // FORMS demo handlers
+    function handleReservation(e){
+      e.preventDefault();
+      const name = document.getElementById('resName').value.trim();
+      const email = document.getElementById('resEmail').value.trim();
+      const date = document.getElementById('resDate').value;
+      const pkg  = document.getElementById('resPackage').value;
+      const alertBox = document.getElementById('resAlert');
+      if(!name || !email || !date || !pkg){
+        showAlert(alertBox, 'Ju lutem plotësoni fushat e detyrueshme.', 'warning');
+        return;
+      }
+      showAlert(alertBox, 'Kërkesa juaj u dërgua! Do t’ju kontaktojmë shumë shpejt për konfirmim. 💖', 'success');
+      e.target.reset();
+    }
+
+    function handleContact(e){
+      e.preventDefault();
+      const alertBox = document.getElementById('ctAlert');
+      showAlert(alertBox, 'Mesazhi u dërgua me sukses. Faleminderit që na shkruat! 💌', 'success');
+      e.target.reset();
+    }
+
+    function showAlert(container, msg, type='success'){
+      const bg = type === 'success' ? 'rgba(47,179,128,.12)' : 'rgba(246,167,0,.12)';
+      const bd = type === 'success' ? '#c9f0e2' : '#fde3b0';
+      const cl = type === 'success' ? 'var(--success)' : 'var(--warning)';
+      container.innerHTML = '<div class="p-3 rounded-3" style="background:'+bg+'; border:1px solid '+bd+'; color:'+cl+';">'+msg+'</div>';
+    }
+  </script>
+</body>
+</html>
